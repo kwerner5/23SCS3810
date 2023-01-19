@@ -5,7 +5,7 @@ Description: A simple FMS for employees
 """
 
 
-class Entity: 
+class Entity:
     """
     models an entity's interface with a key
     """
@@ -16,17 +16,18 @@ class Entity:
         """
         pass
 
-class Employee(Entity): 
+
+class Employee(Entity):
     """
     models an employee entity with id, name, and department
     """
 
     def __init__(self, id, name, department) -> None:
-        self.id          = id 
-        self.name        = name
-        self.department  = department
+        self.id = id
+        self.name = name
+        self.department = department
 
-    def get_key(self): 
+    def get_key(self):
         """
         an employee's id is defined as the entity's key
         """
@@ -38,41 +39,43 @@ class Employee(Entity):
         """
         return str(self.id) + "," + self.name + "," + self.department
 
-class CRUD: 
+
+class CRUD:
     """
     models a CRUD (Create, Read, Update, and Delete) interface
     """
 
-    def create(self, entity) -> bool: 
+    def create(self, entity) -> bool:
         """
         defines a method to create a new entity
         """
         pass
 
-    def read(self, key) -> any: 
+    def read(self, key) -> any:
         """
         defines a method to search for an entity by its key
         """
-        pass 
+        pass
 
-    def update(self, entity) -> bool: 
+    def update(self, entity) -> bool:
         """
         defines a method to update an entity
         """
         pass
 
-    def delete(self, key) -> bool: 
+    def delete(self, key) -> bool:
         """
         defines a method to delete an entity by its key
         """
         pass
 
-class EmployeeCRUD(CRUD): 
+
+class EmployeeCRUD(CRUD):
     """
     models a CRUD for employee entities
     """
 
-    def __init__(self, file_name): 
+    def __init__(self, file_name):
         """
         an employee CRUD is defined by its file name (used for storage)
         """
@@ -84,16 +87,16 @@ class EmployeeCRUD(CRUD):
         """
         key = entity.get_key()
         result = False
-        if not self.read(key): 
-            try: 
+        if not self.read(key):
+            try:
                 file = open(self.file_name, "a")
                 file.write(str(entity) + "\n")
                 result = True
-            finally: 
+            finally:
                 file.close()
         return result
 
-    def read(self, key) -> Employee: 
+    def read(self, key) -> Employee:
         """
         TODO #1: 
             * open the (storage) file for reading
@@ -101,15 +104,53 @@ class EmployeeCRUD(CRUD):
             * if the entity is found, return it
             * else, return None
         """
-        pass
+        employee = None
+        try:
+            file = open(self.file_name, "r")
+            for line in file:
+                line = line.strip()
+                cols = line.split(",")
+                id = int(cols[0])
+                print("id:" + str(id))
+                if id == key:
+                    name = cols[1]
+                    department = cols[2]
+                    employee = Employee(id, name, department)
+                    break
+        finally:
+            file.close()
+        return employee
 
-    def update(self, entity) -> bool: 
+    def update(self, entity) -> bool:
         """
         TODO #2: delete the entity (using the key) then re-create it
         """
-        pass
+        # not an efficient method, but can use if want:
+        # key = entity.get_key()
+        # if not self.delete(key):
+        #     return False
+        # if not self.create(entity):
+        #     return False
+        # return True
 
-    def delete(self, key) -> bool: 
+        result = False
+        try:
+            file = open(self.file_name, "r")
+            lines = file.readlines()
+            file.close()
+            file = open(self.file_name, "w")
+            for line in lines:
+                line = line.strip()
+                cols = line.split(",")
+                id = int(cols[0])
+                if id == key:
+                        continue
+                    break
+        finally:
+            file.close()
+        return result
+
+    def delete(self, key) -> bool:
         """
         TODO #3: 
             * open the (storage) file for reading
@@ -118,16 +159,18 @@ class EmployeeCRUD(CRUD):
             * copy all of the entities, except the one that should be deleted
         """
         pass
-                
-def menu(): 
+
+
+def menu():
     print("1. Create")
     print("2. Read")
     print("3. Update")
     print("4. Delete")
     print("5. Quit")
 
-FILE_NAME = "employees.csv" 
-    
+
+FILE_NAME = "employees.csv"
+
 if __name__ == "__main__":
 
     empCRUD = EmployeeCRUD(FILE_NAME)
@@ -139,18 +182,18 @@ if __name__ == "__main__":
             name = input("name? ")
             department = input("department? ")
             employee = Employee(id, name, department)
-            if empCRUD.create(employee): 
+            if empCRUD.create(employee):
                 print("New employee successfully created!")
             else:
                 print("Fail to create a new employee!")
         elif option == 2:
             id = int(input("id? "))
             employee = empCRUD.read(id)
-            if employee: 
+            if employee:
                 print(employee)
             else:
                 print("Employee not found!")
-        elif option == 3: 
+        elif option == 3:
             id = int(input("id? "))
             name = input("name? ")
             department = input("department? ")
@@ -159,7 +202,7 @@ if __name__ == "__main__":
                 print("Employee successfully updated!")
             else:
                 print("Fail to update employee!")
-        elif option == 4: 
+        elif option == 4:
             id = int(input("id? "))
             if empCRUD.delete(id):
                 print("Employee successfully deleted!")
