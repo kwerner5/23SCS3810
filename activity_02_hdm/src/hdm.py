@@ -6,7 +6,8 @@ Description: A simple hierarchical db for courses enrollment
 
 import os
 
-class Entity: 
+
+class Entity:
     """
     models an entity's interface with a key
     """
@@ -17,17 +18,18 @@ class Entity:
         """
         pass
 
-class Course(Entity): 
+
+class Course(Entity):
     """
     models a course entity with prefix, code, and description
     """
 
     def __init__(self, prefix, code, description) -> None:
-        self.prefix      = prefix 
-        self.code        = code
+        self.prefix = prefix
+        self.code = code
         self.description = description
 
-    def get_key(self): 
+    def get_key(self):
         """
         a course's prefix and code are defined as the entity's key
         """
@@ -39,19 +41,20 @@ class Course(Entity):
         """
         return self.prefix + "," + str(self.code) + "," + self.description
 
-class Section(Entity): 
+
+class Section(Entity):
     """
     models a course section entity with course prefix, course code, section number, and instructor name
     """
 
     def __init__(self, course, year, semester, number, instructor) -> None:
-        self.course     = course
-        self.year       = year
-        self.semester   = semester
-        self.number     = number 
+        self.course = course
+        self.year = year
+        self.semester = semester
+        self.number = number
         self.instructor = instructor
 
-    def get_key(self): 
+    def get_key(self):
         """
         a section's course and number are defined as the entity's key
         """
@@ -63,16 +66,17 @@ class Section(Entity):
         """
         return str(self.course) + "," + str(self.year) + "," + self.semester + "," + self.number + "," + self.instructor
 
-class Student(Entity): 
+
+class Student(Entity):
     """
     models a student entity with id and name
     """
 
     def __init__(self, id, name) -> None:
-        self.id   = id
-        self.name = name 
+        self.id = id
+        self.name = name
 
-    def get_key(self): 
+    def get_key(self):
         """
         a student's id is defined as the entity's key
         """
@@ -84,19 +88,36 @@ class Student(Entity):
         """
         return str(self.id) + "," + self.name
 
-class DB: 
 
-    def list_courses() -> list: 
+class DB:
+
+    def list_courses() -> list:
         """
         TODO #1: list all courses
         """
-        pass
+        courses = []
+        # with open('db/course.db', 'r') as file: # system dependency
+        with open(os.path.join('db', 'courses.csv'), 'r') as file:
+            for line in file:
+                line = line.strip()
+                prefix, number, description = line.split(',')
+                course = Course(prefix, number, description)
+                courses.append(course)
+            return courses
 
-    def list_sections(course) -> list: 
+    def list_sections(course) -> list:
         """
         TODO #2: list all sections of a course
         """
-        pass
+        sections = []
+        with open(os.path.join('db', course.prefix + str(course.code), 'sections.csv'), 'r') as file:
+            for line in file:
+                line = line.strip()
+                year, semester, number, instructor = line.split(',')
+                year = int(year)
+                section = Section(course, year, semester, number, instructor)
+                sections.append(section)
+            return sections
 
     def list_students(section) -> list:
         """
@@ -110,50 +131,55 @@ class DB:
         """
         pass
 
-def menu(): 
+
+def menu():
     print("1. List all courses")
     print("2. List sections of a course")
     print("3. List students enrolled in a course section")
     print("4. List a student schedule")
     print("5. Quit")
 
+
 if __name__ == "__main__":
 
-    while (True):
-        menu()
-        option = int(input("? "))
-        if option == 1:
-            print("Courses:")
-            for course in DB.list_courses():
-                print(course)
-            print()
-        elif option == 2:
-            prefix = input("prefix? ")
-            code = int(input("code? "))
-            course = Course(prefix, code, "")
-            print("Sections of " + str(course) + ":")
-            for section in DB.list_sections(course):
-                print(section)
-        elif option == 3: 
-            prefix = input("prefix? ")
-            code = int(input("code? "))
-            course = Course(prefix, code, "")
-            year = int(input("year? "))
-            semester = input("semester? ")
-            number = input("number? ")
-            section = Section(course, year, semester, number, "")
-            print("Students enrolled in " + str(section) + ":")
-            for student in DB.list_students(section):
-                print(student)
-        elif option == 4: 
-            id = int(input("id? "))
-            year = int(input("year? "))
-            semester = input("semester? ")
-            print("Schedule for student with id " + str(id) + ": ")
-            for section in DB.list_schedule(id, year, semester):
-                print(section)
-        elif option == 5:
-            break
-        else:
-            print("Invalid option!")
-    print("Bye!")
+    print([str(course) for course in DB.list_courses()])
+    print([str()])
+
+    # while (True):
+    #     menu()
+    #     option = int(input("? "))
+    #     if option == 1:
+    #         print("Courses:")
+    #         for course in DB.list_courses():
+    #             print(course)
+    #         print()
+    #     elif option == 2:
+    #         prefix = input("prefix? ")
+    #         code = int(input("code? "))
+    #         course = Course(prefix, code, "")
+    #         print("Sections of " + str(course) + ":")
+    #         for section in DB.list_sections(course):
+    #             print(section)
+    #     elif option == 3:
+    #         prefix = input("prefix? ")
+    #         code = int(input("code? "))
+    #         course = Course(prefix, code, "")
+    #         year = int(input("year? "))
+    #         semester = input("semester? ")
+    #         number = input("number? ")
+    #         section = Section(course, year, semester, number, "")
+    #         print("Students enrolled in " + str(section) + ":")
+    #         for student in DB.list_students(section):
+    #             print(student)
+    #     elif option == 4:
+    #         id = int(input("id? "))
+    #         year = int(input("year? "))
+    #         semester = input("semester? ")
+    #         print("Schedule for student with id " + str(id) + ": ")
+    #         for section in DB.list_schedule(id, year, semester):
+    #             print(section)
+    #     elif option == 5:
+    #         break
+    #     else:
+    #         print("Invalid option!")
+    # print("Bye!")
