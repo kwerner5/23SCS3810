@@ -143,7 +143,6 @@ def menu():
 if __name__ == "__main__":
 
     print([str(course) for course in DB.list_courses()])
-    print([str()])
 
     # while (True):
     #     menu()
