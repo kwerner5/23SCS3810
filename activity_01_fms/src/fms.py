@@ -133,6 +133,21 @@ class EmployeeCRUD(CRUD):
         #     return False
         # return True
 
+        key = entity.get_key()
+        if not self.delete(key):
+            return False
+        if not self.delete(entity):
+            return False
+        return True
+
+    def delete(self, key) -> bool:
+        """
+        TODO #3: 
+            * open the (storage) file for reading
+            * read all of the lines in memory
+            * re-open the (storage) file for writing
+            * copy all of the entities, except the one that should be deleted
+        """
         result = False
         try:
             file = open(self.file_name, "r")
@@ -144,21 +159,12 @@ class EmployeeCRUD(CRUD):
                 cols = line.split(",")
                 id = int(cols[0])
                 if id == key:
-                        continue
-                    break
+                    continue
+                file.write(line + "\n")
+            result = True
         finally:
             file.close()
         return result
-
-    def delete(self, key) -> bool:
-        """
-        TODO #3: 
-            * open the (storage) file for reading
-            * read all of the lines in memory
-            * re-open the (storage) file for writing
-            * copy all of the entities, except the one that should be deleted
-        """
-        pass
 
 
 def menu():

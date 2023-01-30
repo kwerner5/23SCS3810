@@ -3,4 +3,4 @@ The "db" folder implements a simple hierarchical database for course enrollment.
 * list all courses; 
 * list all sections of a course; 
 * list all students enrolled in a course section; and 
-* list all course sections that a student in enrolled in.
+* list all course sections that a student is enrolled in.
