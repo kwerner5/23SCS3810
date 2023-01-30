@@ -136,7 +136,7 @@ class EmployeeCRUD(CRUD):
         key = entity.get_key()
         if not self.delete(key):
             return False
-        if not self.delete(entity):
+        if not self.create(entity):
             return False
         return True
 

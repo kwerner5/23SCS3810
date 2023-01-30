@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8d5dd94f-6599-4853-8e5e-3df6c83e300d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hdm.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/hdm.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +29,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Spring2023/CS3810/Code",
+    "last_opened_file_path": "D:/Spring2023/CS3810/Code/Activities/23SCS3810/activity_01_fms",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -47,6 +46,9 @@
       <module name="activity_02_hdm" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python38/python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../.." />
       <option name="IS_MODULE_SDK" value="false" />
@@ -62,11 +64,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.hdm" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -82,7 +79,10 @@
       <workItem from="1674511054519" duration="180000" />
       <workItem from="1674511254423" duration="594000" />
       <workItem from="1674580497147" duration="290000" />
-      <workItem from="1674580800973" duration="5106000" />
+      <workItem from="1674580800973" duration="7752000" />
+      <workItem from="1675040249881" duration="701000" />
+      <workItem from="1675041481009" duration="121000" />
+      <workItem from="1675041638733" duration="2531000" />
     </task>
     <servers />
   </component>
@@ -99,8 +99,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/activity_02_hdm$hdm.coverage" NAME="hdm Coverage Results" MODIFIED="1674594968269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../.." />
   </component>
 </project>
