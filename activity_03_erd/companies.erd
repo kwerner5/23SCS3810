@@ -1,0 +1,15 @@
+erdiagram companies
+notation = crowsfoot
+generate = off
+
+entity Presidents {
+
+}
+
+entity Companies {
+
+}
+
+relationship runs {
+    Presidents[1] -> Companies[0..1]
+}
