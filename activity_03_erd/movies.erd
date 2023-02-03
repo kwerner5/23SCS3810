@@ -2,13 +2,19 @@ erdiagram movies
 notation = crowsfoot
 entity Movies {
 	title
-	lengeth
+	length
 	year
 	genre
 }
+
+entity Studios { }
 
 entity Stars { }
 
 relationship works {
 	Stars[N] -> Movies[N]
+}
+
+relationship owns {
+	Studios[0..1] -> Movies[N]
 }

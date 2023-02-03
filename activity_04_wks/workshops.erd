@@ -1,0 +1,34 @@
+erdiagram workshops
+notation = crowsfoot
+
+entity Workshops {
+    name key
+    dates
+}
+
+entity Participants {
+    name
+    email key
+}
+
+weak entity Rooms {
+    capacity
+    floor key
+    room_number partial-key
+}
+
+entity Venues{
+    name key
+}
+
+relationship attend {
+    Participants[0..N] -> Workshops[0..N]
+}
+
+relationship host {
+    Venues[1] -> Rooms[1..N]
+}
+
+relationship reserve {
+    Workshops[0..N] -> Rooms[1]
+}

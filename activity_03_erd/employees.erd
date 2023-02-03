@@ -1,7 +1,7 @@
 erdiagram employees
 notation=crowsfoot
 
-entity Employees { }
+entity Employees {  }
 entity Departments { }
 entity Dependents { }
 

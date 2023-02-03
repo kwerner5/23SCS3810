@@ -1,0 +1,3 @@
+Candidates(ssn: integer, name: string) #key: ssn
+JobPositions(number: integer, title: string, department: string) #key: number
+Applications(ssn: integer, job_number: integer)

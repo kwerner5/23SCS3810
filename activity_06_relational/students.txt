@@ -1,0 +1,21 @@
+Students(id: integer, name: string) # id shold be underlined (is the key)
+Courses(number: string, title: string) #number is key
+Enrollments(student_id: integer, course_number: string, date: Date) #place the keys in this section; change the name of each key to make sure any context from the class that they're in is explicit
+
+Students
+id      name
+101     Joe
+202     Mary
+303     Paul
+
+Enrollments
+student_id      course_number
+101             CS 1050
+101             CS 2050
+202             CS 1050
+
+
+Courses
+number      title
+CS 1050     CS-1
+CS 2050     CS-2
