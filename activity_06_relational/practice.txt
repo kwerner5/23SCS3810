@@ -1,0 +1,30 @@
+#1
+Students(id: int, name: String)
+
+Courses(number: int, title: String)
+
+Enrollments(student_id: int, course_number: int)
+
+#2
+Buildings(name: String, address: String)
+
+Rooms(building_name: String, floor: int, number: int)
+
+#3
+Candidates(ssn: int, name: String)
+
+JobPositions(number: int, title: String, department: String)
+
+Applications(ssn: int, job_Position_number: int)
+
+#4
+Employees(ssn: int, name: String)
+
+Projects(number: int, title: String)
+
+Employee_Projects(ssn: int, project_number: int, hour: int)
+
+#5
+Shippings(order_number: int, address: String)
+
+Items(order_number: int, seq_number: int, description: String)
