@@ -1,0 +1,4 @@
+a.  List all male employees: 
+    sigma_(sex=1)(Employees)
+    
+    pi_(name)(sigma_(sex=2)(Employees))
