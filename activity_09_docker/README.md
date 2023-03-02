@@ -12,6 +12,11 @@ Create a (local) folder fo all of the databases you will be creating this semest
 /Users/tmota/devel/teach/__23SCS3810_DB/postgres
 ```
 
+```
+D:/Spring2023/CS3810/Code/postgres
+```
+
+
 # Running Postgres as a Container
 
 Download the postgres (standard) docker image from Docker hub using: 
@@ -24,6 +29,10 @@ Then start your postgres container from the image that you downloaded using:
 
 ```
 docker run --rm --name postgres -e POSTGRES_PASSWORD=135791 -v /Users/tmota/devel/teach/__23SCS3810_DB/postgres:/var/lib/postgresql/data postgres
+```
+
+```
+docker run --rm --name postgres -e POSTGRES_PASSWORD=135791 -v /Spring2023/CS3810/Code/postgres:/var/lib/postresql/data postgres
 ```
 
 The command above will start postgres using 135791 as the password for the postgres (default) user.  Note the use of -e parameter (useful to set environment variables) for your container. The environment variables that need to be set is container-dependent. Also note the -v parameter which allows mapping the container's postgres storage to a local folder of your choice. 
