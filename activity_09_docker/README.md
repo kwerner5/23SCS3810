@@ -54,6 +54,7 @@ CREATE DATABASE test;
 
 \c test
 
+
 CREATE TABLE Employees (
  id INT PRIMARY KEY,
  name VARCHAR(35) NOT NULL,
